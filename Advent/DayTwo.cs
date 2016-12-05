@@ -35,7 +35,7 @@ namespace Advent
 		{
 			string answer = "Day 1\n";
 
-			answer += "Part One: " + CombinationToString(GetCombination(kKeypad1));
+			answer += "Part One: " + CombinationToString(GetCombination(kKeypad1)) + "\n";
 			answer += "Part Two: " + CombinationToString(GetCombination(kKeypad2));
 
 			return answer;
