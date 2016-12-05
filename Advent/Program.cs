@@ -11,6 +11,7 @@ namespace Advent
 		static void Main(string[] args)
 		{
 			Console.WriteLine(DayOne.GetSolution());
+			Console.WriteLine(DayTwo.GetSolution());
 		}
 	}
 }

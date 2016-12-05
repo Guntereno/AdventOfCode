@@ -6,34 +6,49 @@ namespace Advent
 {
 	static class DayOne
 	{
-		const string kInstructions = "R2, L5, L4, L5, R4, R1, L4, R5, R3, R1, L1, L1, R4, L4, L1, R4, L4, R4, L3, R5, R4, R1, R3, L1, L1, R1, L2, R5, L4, L3, R1, L2, L2, R192, L3, R5, R48, R5, L2, R76, R4, R2, R1, L1, L5, L1, R185, L5, L1, R5, L4, R1, R3, L4, L3, R1, L5, R4, L4, R4, R5, L3, L1, L2, L4, L3, L4, R2, R2, L3, L5, R2, R5, L1, R1, L3, L5, L3, R4, L4, R3, L1, R5, L3, R2, R4, R2, L1, R3, L1, L3, L5, R4, R5, R2, R2, L5, L3, L1, L1, L5, L2, L3, R3, R3, L3, L4, L5, R2, L1, R1, R3, R4, L2, R1, L1, R3, R3, L4, L2, R5, R5, L1, R4, L5, L5, R1, L5, R4, R2, L1, L4, R1, L1, L1, L5, R3, R4, L2, R1, R2, R1, R1, R3, L5, R1, R4";
-
-		private struct Location
+		public static string GetSolution()
 		{
-			public Location(int x, int y)
-			{
-				X = x;
-				Y = y;
-			}
+			List<string> commands = kInstructions.Split(',').Select(p => p.Trim()).ToList();
+			Location? easterBunnyHq = null;
 
-			public override string ToString()
+			var turtle = new ManhattanPathFollower();
+			turtle.OnLocationVisited += (location, visited) =>
 			{
-				return "[" + X + "," + Y + "]";
-			}
-
-			public int ManhattanDistanceFromOrigin
-			{
-				get
+				// Easter Bunny HQ is actually at the first location you visit twice.
+				if (easterBunnyHq != null)
 				{
-					return Math.Abs(X) + Math.Abs(Y);
+					return;
 				}
+				else if (visited == 2)
+				{
+					easterBunnyHq = location;
+				}
+			};
+
+
+			foreach (string command in commands)
+			{
+				turtle.ProcessCommand(command);
 			}
 
-			public int X;
-			public int Y;
+			string answer = "Day 1\n";
+			answer += "Part One:" + turtle.Location.ManhattanDistanceFromOrigin + "\n";
+			if (easterBunnyHq != null)
+			{
+				answer += "Part Two: " + easterBunnyHq.Value.ManhattanDistanceFromOrigin;
+			}
+			else
+			{
+				answer += "location: FAILED!";
+			}
+
+
+			return (answer);
 		}
 
-		public enum Dir
+		private const string kInstructions = "R2, L5, L4, L5, R4, R1, L4, R5, R3, R1, L1, L1, R4, L4, L1, R4, L4, R4, L3, R5, R4, R1, R3, L1, L1, R1, L2, R5, L4, L3, R1, L2, L2, R192, L3, R5, R48, R5, L2, R76, R4, R2, R1, L1, L5, L1, R185, L5, L1, R5, L4, R1, R3, L4, L3, R1, L5, R4, L4, R4, R5, L3, L1, L2, L4, L3, L4, R2, R2, L3, L5, R2, R5, L1, R1, L3, L5, L3, R4, L4, R3, L1, R5, L3, R2, R4, R2, L1, R3, L1, L3, L5, R4, R5, R2, R2, L5, L3, L1, L1, L5, L2, L3, R3, R3, L3, L4, L5, R2, L1, R1, R3, R4, L2, R1, L1, R3, R3, L4, L2, R5, R5, L1, R4, L5, L5, R1, L5, R4, R2, L1, L4, R1, L1, L1, L5, R3, R4, L2, R1, R2, R1, R1, R3, L5, R1, R4";
+
+		private enum Dir
 		{
 			North,
 			East,
@@ -132,46 +147,6 @@ namespace Advent
 					OnLocationVisited(Location, _locationVisitedCount[Location]);
 				}
 			}
-		}
-
-		public static string GetSolution()
-		{
-			List<string> commands = kInstructions.Split(',').Select(p => p.Trim()).ToList();
-			Location? easterBunnyHq = null;
-
-			var turtle = new ManhattanPathFollower();
-			turtle.OnLocationVisited += (location, visited) =>
-			{
-				// Easter Bunny HQ is actually at the first location you visit twice.
-				if (easterBunnyHq != null)
-				{
-					return;
-				}
-				else if (visited == 2)
-				{
-					easterBunnyHq = location;
-				}
-			};
-
-
-			foreach (string command in commands)
-			{
-				turtle.ProcessCommand(command);
-			}
-
-			string answer = "Day 1\n";
-			answer += "Part One:" + turtle.Location.ManhattanDistanceFromOrigin + "\n";
-			if (easterBunnyHq != null)
-			{
-				answer += "Part Two: " + easterBunnyHq.Value.ManhattanDistanceFromOrigin;
-			}
-			else
-			{
-				answer += "location: FAILED!";
-			}
-
-
-			return (answer);
 		}
 	}
 }
