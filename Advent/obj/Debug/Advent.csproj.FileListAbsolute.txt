@@ -1,0 +1,6 @@
+C:\Users\pgunter\Google Drive\AdventOfCode\Advent\bin\Debug\Advent.exe.config
+C:\Users\pgunter\Google Drive\AdventOfCode\Advent\bin\Debug\Advent.exe
+C:\Users\pgunter\Google Drive\AdventOfCode\Advent\bin\Debug\Advent.pdb
+C:\Users\pgunter\Google Drive\AdventOfCode\Advent\obj\Debug\Advent.csprojResolveAssemblyReference.cache
+C:\Users\pgunter\Google Drive\AdventOfCode\Advent\obj\Debug\Advent.exe
+C:\Users\pgunter\Google Drive\AdventOfCode\Advent\obj\Debug\Advent.pdb
