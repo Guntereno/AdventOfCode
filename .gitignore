@@ -1,1 +1,3 @@
-ignore 
+Advent/bin/
+Advent/obj/
+.vs/
