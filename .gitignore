@@ -1,3 +1,5 @@
 Advent/bin/
 Advent/obj/
 .vs/
+Advent/
+*.vshost.exe.manifest
