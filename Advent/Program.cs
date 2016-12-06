@@ -15,7 +15,8 @@ namespace Advent
 			{
 				DayOne.GetSolution(),
 				DayTwo.GetSolution(),
-				DayThree.GetSolution(File.ReadAllText("data/day3.txt"))
+				DayThree.GetSolution(File.ReadAllText("data/day3.txt")),
+				DayFour.GetSolution(File.ReadAllText("data/day4.txt"))
 			};
 
 			for (int i = 0; i < solutions.Length; ++i)
