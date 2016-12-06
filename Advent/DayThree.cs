@@ -8,9 +8,9 @@ namespace Advent
 {
 	public static class DayThree
 	{
-		public static string GetSolution(string input)
+		public static Solution GetSolution(string input)
 		{
-			string answer = "Day 1\n";
+			int answer1, answer2;
 
 			string[] lines = input.Trim().Split('\n');
 
@@ -23,8 +23,7 @@ namespace Advent
 					tris[i] = new Triangle(vals[0], vals[1], vals[2]);
 				}
 
-				int numPossible = CountPossible(tris);
-				answer += "Part One:" + numPossible + "\n";
+				answer1 = CountPossible(tris);
 			}
 
 			// Part Two
@@ -54,11 +53,18 @@ namespace Advent
 					}
 				}
 
-				int numPossible = CountPossible(tris.ToArray());
-				answer += "Part Two:" + numPossible + "\n";
+				answer2 = CountPossible(tris.ToArray());
 			}
 
-			return answer;
+			return new Solution()
+			{
+				Name = "Day Three",
+				Parts = new string[]
+				{
+					answer1.ToString(),
+					answer2.ToString()
+				}
+			};
 		}
 
 		private static int CountPossible(Triangle[] tris)

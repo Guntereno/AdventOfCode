@@ -11,11 +11,19 @@ namespace Advent
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine(DayOne.GetSolution());
-			Console.WriteLine(DayTwo.GetSolution());
+			Solution[] solutions = new Solution[]
+			{
+				DayOne.GetSolution(),
+				DayTwo.GetSolution(),
+				DayThree.GetSolution(File.ReadAllText("data/day3.txt"))
+			};
 
-			string day3Input = File.ReadAllText("data/day3.txt");
-			Console.WriteLine(DayThree.GetSolution(day3Input));
+			for (int i = 0; i < solutions.Length; ++i)
+			{
+				Console.Write(solutions[i]);
+			}
+
+			return;
 		}
 	}
 }

@@ -31,14 +31,17 @@ namespace Advent
 			{ '\0', '\0', 'D', '\0', '\0' },
 		};
 
-		public static string GetSolution()
+		public static Solution GetSolution()
 		{
-			string answer = "Day 1\n";
-
-			answer += "Part One: " + CombinationToString(GetCombination(kKeypad1)) + "\n";
-			answer += "Part Two: " + CombinationToString(GetCombination(kKeypad2));
-
-			return answer;
+			return new Solution()
+			{
+				Name = "Day Two",
+				Parts = new string[]
+				{
+					CombinationToString(GetCombination(kKeypad1)),
+					CombinationToString(GetCombination(kKeypad2))
+				}
+			};
 		}
 
 		private static char[] GetCombination(char[,] keypad)

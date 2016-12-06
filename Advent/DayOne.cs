@@ -6,7 +6,7 @@ namespace Advent
 {
 	static class DayOne
 	{
-		public static string GetSolution()
+		public static Solution GetSolution()
 		{
 			List<string> commands = kInstructions.Split(',').Select(p => p.Trim()).ToList();
 			Location? easterBunnyHq = null;
@@ -31,19 +31,16 @@ namespace Advent
 				turtle.ProcessCommand(command);
 			}
 
-			string answer = "Day 1\n";
-			answer += "Part One:" + turtle.Location.ManhattanDistanceFromOrigin + "\n";
-			if (easterBunnyHq != null)
-			{
-				answer += "Part Two: " + easterBunnyHq.Value.ManhattanDistanceFromOrigin;
-			}
-			else
-			{
-				answer += "location: FAILED!";
-			}
 
-
-			return answer;
+			return new Solution()
+			{
+				Name = "Day One",
+				Parts = new string[]
+				{
+					turtle.Location.ManhattanDistanceFromOrigin.ToString(),
+					(easterBunnyHq != null) ? easterBunnyHq.Value.ManhattanDistanceFromOrigin.ToString() : "FAILED!"
+				}
+			};
 		}
 
 		private const string kInstructions = "R2, L5, L4, L5, R4, R1, L4, R5, R3, R1, L1, L1, R4, L4, L1, R4, L4, R4, L3, R5, R4, R1, R3, L1, L1, R1, L2, R5, L4, L3, R1, L2, L2, R192, L3, R5, R48, R5, L2, R76, R4, R2, R1, L1, L5, L1, R185, L5, L1, R5, L4, R1, R3, L4, L3, R1, L5, R4, L4, R4, R5, L3, L1, L2, L4, L3, L4, R2, R2, L3, L5, R2, R5, L1, R1, L3, L5, L3, R4, L4, R3, L1, R5, L3, R2, R4, R2, L1, R3, L1, L3, L5, R4, R5, R2, R2, L5, L3, L1, L1, L5, L2, L3, R3, R3, L3, L4, L5, R2, L1, R1, R3, R4, L2, R1, L1, R3, R3, L4, L2, R5, R5, L1, R4, L5, L5, R1, L5, R4, R2, L1, L4, R1, L1, L1, L5, R3, R4, L2, R1, R2, R1, R1, R3, L5, R1, R4";
